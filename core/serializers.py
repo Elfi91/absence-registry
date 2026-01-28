@@ -1,9 +1,9 @@
+from rest_framework import serializers
 from django.contrib.auth.models import User
-from rest_framework import serializers
-
-from rest_framework import serializers
 from .models import Absence
+from students.serializers import StudentSerializer
 
+# Questo mancava nel file che abbiamo aggiornato prima!
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
@@ -20,7 +20,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 class AbsenceSerializer(serializers.ModelSerializer):
+    student_details = StudentSerializer(source='student', read_only=True)
+
     class Meta:
         model = Absence
-        fields = ['id', 'student', 'date', 'is_justified', 'comment', 'created_by']
-        read_only_fields = ['created_by'] # Il creatore viene impostato automaticamente dalla vista
+        fields = ['id', 'student', 'student_details', 'date', 'is_justified', 'comment', 'created_by']
+        read_only_fields = ['created_by']

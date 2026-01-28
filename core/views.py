@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth.models import User
 from students.models import Student
 from students.serializers import StudentSerializer
+from .serializers import AbsenceSerializer, RegisterSerializer
 
 from .models import Absence
 from .serializers import AbsenceSerializer, RegisterSerializer
