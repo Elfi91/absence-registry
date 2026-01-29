@@ -1,4 +1,4 @@
-# Absence Registry (Registro Assenze)
+# 🚧 Work In Progress: School Registry API
 
 This is a Django REST API project designed to manage student absences. It allows for user authentication, student management, and tracking functionality for student absences.
 
