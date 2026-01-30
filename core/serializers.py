@@ -1,10 +1,16 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+
+from students.models import Student
 from .models import Absence
 from students.serializers import StudentSerializer
 from django.contrib.auth.password_validation import validate_password
 
-# Questo mancava nel file che abbiamo aggiornato prima!
+class StudentShortSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ['id', 'first_name', 'last_name', 'course']
+
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
@@ -25,7 +31,7 @@ class AbsenceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Absence
-        fields = ['id', 'student', 'student_details', 'date', 'is_justified', 'comment', 'created_by']
+        fields = ['id', 'student', 'student_details', 'date', 'is_justified', 'created_by']
         read_only_fields = ['created_by']
 
 class ChangePasswordSerializer(serializers.Serializer):
