@@ -1,13 +1,17 @@
-# 🚧 Work In Progress: School Registry API
+# 🚧 School Registry API (Work In Progress)
 
-This is a Django REST API project designed to manage student absences. It allows for user authentication, student management, and tracking functionality for student absences.
+A RESTful API for school management, focused on tracking student attendance and professional teacher authentication.
 
-## Features
-
-*   **User Authentication**: Secure registration and login using JWT (JSON Web Tokens).
-*   **Student Management**: View detailed information about students.
-*   **Absence Tracking**: Create, view, and manage absence records for students.
-*   **Permissions**: Protected endpoints ensuring only authenticated users can access data.
+## 🚀 Latest Updates (Refactoring)
+- **Course System**: Migrated from a generic 'classroom' field to a more flexible **'course'** structure.
+- **Absence Analytics**: Added a real-time **absence percentage** calculator for each student profile.
+- **Data Cleanup**: Streamlined the absence model by removing unused comment fields for a leaner database.
+- 
+## 🛠 Features
+* **Authentication**: JWT-based login, registration, and secure password change.
+* **Student Management**: Full CRUD operations for student profiles.
+* **Attendance Tracking**: Simplified absence recording linked directly to students.
+* **Postman Integration**: Automated token management through environment variables.
 
 ## key Technologies
 
@@ -65,8 +69,22 @@ This is a Django REST API project designed to manage student absences. It allows
 
     The API will be available at `http://127.0.0.1:8000/`.
 
-## API Endpoints
+## 📋 API Highlights
 
+### Students
+* `GET /api/students/<id>/` - Returns student info, list of absences, and **absence_percentage**.
+* `PATCH /api/students/<id>/` - Update student info (use `course` instead of `classroom`).
+
+### Absences
+* `POST /api/absences/` - Create a new absence record.
+  ```json
+  {
+      "student": 1,
+      "date": "2026-01-30",
+      "is_justified": false
+  }
+  
+## API Endpoints
 Here are the main API endpoints available:
 
 ### CRUD
